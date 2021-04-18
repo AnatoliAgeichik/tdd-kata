@@ -9,4 +9,4 @@ simple project for introduction to tests in python
 to run the tests, run the following code
 
  
-    python3 -m unittest discover tests
+    cd tests && pytest test_greet.py
