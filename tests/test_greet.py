@@ -15,3 +15,10 @@ def test_greet_without_name():
     result = greet(data)
     expected = "Hello, my friend."
     assert result == expected
+
+
+def test_greet_with_uppercase_name():
+    data = "JERRY"
+    result = greet(data)
+    expected = "HELLO {}!".format(data)
+    assert result == expected
