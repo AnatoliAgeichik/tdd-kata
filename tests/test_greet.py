@@ -22,3 +22,10 @@ def test_greet_with_uppercase_name():
     result = greet(data)
     expected = "HELLO {}!".format(data)
     assert result == expected
+
+
+def test_greet_with_two_names_from_list():
+    data = ["Jill", "Jane"]
+    result = greet(data)
+    expected = "Hello, Jill and Jane."
+    assert result == expected
