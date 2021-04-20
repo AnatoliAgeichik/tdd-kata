@@ -3,28 +3,18 @@ import pytest
 from greet_app.greet import greet
 
 
-def test_greet_with_name():
-    data = "Bob"
-    result = greet(data)
-    expected = f"Hello, {data}."
-    assert result == expected
+@pytest.mark.parametrize("test_input,expected", [("Bob", "Hello, Bob."), ("JERRY", "HELLO JERRY!"),
+                                                 (None, "Hello, my friend.")])
+def test_greet_with_one_name(test_input, expected):
+    assert greet(test_input) == expected
 
 
-def test_greet_without_name():
-    data = None
-    result = greet(data)
-    expected = "Hello, my friend."
-    assert result == expected
-
-
-def test_greet_with_uppercase_name():
-    data = "JERRY"
-    result = greet(data)
-    expected = f"HELLO {data}!"
-    assert result == expected
-
-
-@pytest.mark.parametrize("test_input,expected", [(["Jill", "Jane"], "Hello, Jill and Jane."), (("Mike", "James"),
-                                                                                            "Hello, Mike and James.")])
+@pytest.mark.parametrize("test_input,expected", [(["Jill", "Jane"], "Hello, Jill and Jane."),
+                                                 (("Mike", "James"), "Hello, Mike and James."),
+                                                 (["Amy", "Brian", "Charlotte"], "Hello, Amy, Brian and Charlotte."),
+                                            (["Amy", "BRIAN", "Charlotte"], "Hello, Amy and Charlotte. AND HELLO BRIAN!"),
+                                                 (["Amy", "BRIAN", "Charlotte", "JERRY"],
+                                                  "Hello, Amy and Charlotte. AND HELLO BRIAN and JERRY!")])
 def test_greet_with_two_names_from_arr(test_input, expected):
     assert greet(test_input) == expected
+
